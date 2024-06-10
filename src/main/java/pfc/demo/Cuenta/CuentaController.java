@@ -27,5 +27,11 @@ public class CuentaController {
         return cuentaService.getCuenta(username);
     }
 
+    @PostMapping(value = "actualizar")
+    public CuentaResponse actualizarCuenta(Authentication authentication, @RequestBody CuentaRequest cuentaRequest) {
+        String username = jwtService.getUsernameFromAuthentication(authentication);
+        return cuentaService.actualizarCantidadCuenta(username,cuentaRequest.getCantidad());
+    }
+
 
 }

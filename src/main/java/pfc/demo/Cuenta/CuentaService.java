@@ -60,7 +60,7 @@ public class CuentaService {
                 .build();
     }
 
-    public void actualizarCantidadCuenta(String username, double nuevaCantidad) {
+    public CuentaResponse actualizarCantidadCuenta(String username, double nuevaCantidad) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
 
         if (optionalUser.isEmpty()) {
@@ -78,5 +78,11 @@ public class CuentaService {
         cuenta.setCantidad(nuevaCantidad);
 
         cuentaRepository.save(cuenta);
+
+        return CuentaResponse.builder()
+                .id(cuenta.getId())
+                .cantidad(cuenta.getCantidad())
+                .user(cuenta.getUser())
+                .build();
     }
 }
