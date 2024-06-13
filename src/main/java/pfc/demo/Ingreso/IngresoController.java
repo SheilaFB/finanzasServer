@@ -1,5 +1,6 @@
 package pfc.demo.Ingreso;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class IngresoController {
      * @param ingresoRequest
      * @return
      */
+    @Operation(summary = "Crear ingreso", description = "Permite crear un nuevo ingreso para el usuario autenticado.")
     @PostMapping(value = "new")
     public IngresoResponse addIngreso(Authentication authentication, @RequestBody IngresoRequest ingresoRequest) {
         String username = jwtService.getUsernameFromAuthentication(authentication);
@@ -36,6 +38,7 @@ public class IngresoController {
      * @param authentication
      * @return
      */
+    @Operation(summary = "Obtener ingresos", description = "Permite listar todos los ingresos del usuario autenticado.")
     @GetMapping(value = "/cuenta")
     public List<IngresoResponse> getIngresosByCuenta(Authentication authentication) {
         String username = jwtService.getUsernameFromAuthentication(authentication);
@@ -48,6 +51,7 @@ public class IngresoController {
      * @param ingresoRequest
      * @return
      */
+    @Operation(summary = "Obtener ingresos por categoría", description = "Permite listar todos los ingresos de una categoría del usuario autenticado.")
     @GetMapping(value = "/cuenta/categoria")
     public List<IngresoResponse> getIngresosByCuentaAndCategoria(Authentication authentication, @RequestBody IngresoRequest ingresoRequest) {
         String username = jwtService.getUsernameFromAuthentication(authentication);
@@ -60,6 +64,7 @@ public class IngresoController {
      * @param ingresoRequest
      * @return
      */
+    @Operation(summary = "Actualizar ingreso", description = "Permite actualizar un ingreso del usuario autenticado.")
     @PostMapping(value = "/actualizar")
     public IngresoResponse actualizarIngreso(Authentication authentication, @RequestBody IngresoRequest ingresoRequest) {
         String username = jwtService.getUsernameFromAuthentication(authentication);
@@ -72,6 +77,7 @@ public class IngresoController {
      * @param idIngreso
      * @return
      */
+    @Operation(summary = "Eliminar ingreso", description = "Permite eliminar un ingreso del usuario autenticado.")
     @DeleteMapping("/delete/{idIngreso}")
     public String eliminarIngreso(Authentication authentication, @PathVariable Long idIngreso){
         String username = jwtService.getUsernameFromAuthentication(authentication);

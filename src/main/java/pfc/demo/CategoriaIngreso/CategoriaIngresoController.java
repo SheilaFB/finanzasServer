@@ -1,5 +1,6 @@
 package pfc.demo.CategoriaIngreso;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class CategoriaIngresoController {
      * @param request
      * @return
      */
+    @Operation(summary = "Crear categoría de ingreso", description = "Permite crear una nueva categoría de ingreso para el usuario autenticado.")
     @PostMapping(value = "new")
     public CategoriaIngresoResponse addIngreso(Authentication authentication, @RequestBody CategoriaIngresoRequest request) {
         String username = jwtService.getUsernameFromAuthentication(authentication);
@@ -39,6 +41,7 @@ public class CategoriaIngresoController {
      * @param authentication
      * @return
      */
+    @Operation(summary = "Listar categoría de ingreso", description = "Lista las categoría de ingreso del usuario autenticado.")
     @GetMapping(value = "all")
     public List<CategoriaIngresoResponse> getAllByCategoria (Authentication authentication){
         String username = jwtService.getUsernameFromAuthentication(authentication);
