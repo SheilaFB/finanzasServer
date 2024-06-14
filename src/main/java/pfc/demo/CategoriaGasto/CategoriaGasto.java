@@ -12,7 +12,7 @@ import pfc.demo.Cuenta.Cuenta;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "categoria_gasto", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
+@Table(name = "categoria_gasto")
 public class CategoriaGasto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
